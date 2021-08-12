@@ -6,7 +6,7 @@ module Mutations
 
     def resolve(link_id: nil)
       Vote.create!(
-        link: GraphqlTutorialSchema.object_from_id(link_id, context),
+        link: ProjectsSchema.object_from_id(link_id, context),
         user: context[:current_user]
       )
     rescue ActiveRecord::RecordInvalid => e

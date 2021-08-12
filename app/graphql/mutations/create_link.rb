@@ -1,11 +1,14 @@
 module Mutations
+  
   class CreateLink < BaseMutation
     argument :description, String, required: true
     argument :url, String, required: true
+    # argument :user_id, Int, required: true
 
     type Types::LinkType
-
+    
     def resolve(description: nil, url: nil)
+      byebug
       Link.create!(
         description: description,
         url: url,
