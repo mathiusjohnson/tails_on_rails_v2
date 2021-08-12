@@ -12,3 +12,8 @@
 <% else %>
 <div>No links yet!</div>
 <% end %>
+
+<% if user_signed_in? %>
+  <%= link_to("Add Link", create_link_path,
+    class: "btn", method: :post)%>
+<% end %>
