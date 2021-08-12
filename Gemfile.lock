@@ -83,7 +83,7 @@ GEM
     graphiql-rails (1.7.0)
       railties
       sprockets-rails
-    graphql (1.12.14)
+    graphql (1.11.6)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
@@ -201,7 +201,7 @@ DEPENDENCIES
   devise
   faker
   graphiql-rails
-  graphql
+  graphql (= 1.11.6)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
