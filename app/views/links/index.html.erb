@@ -1,0 +1,14 @@
+<% if @data.length > 0%>
+  <% for link in @data do %>
+    <div class="item">
+      <div class="content">
+        <a class="header">
+          <%= link[:description] %>
+        </a>
+        <p class="description text-2xl">- posted by: <%= link["postedBy"]["email"] %></p>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+<div>No links yet!</div>
+<% end %>

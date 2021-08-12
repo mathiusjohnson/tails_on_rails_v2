@@ -1,7 +1,7 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    add_field GraphQL::Types::Relay::NodeField
+    add_field GraphQL::Types::Relay::NodesField
 
     # TODO: remove me
     field :test_field, String, null: false,
@@ -15,14 +15,23 @@ module Types
         description "the current user"
 
     def me
-      User.first
+      context[:current_user]
     end
 
     field :projects, [Types::ProjectType], null: false,
       description: "the projects for the current user"
 
     def projects
-      Project.all
+      context[:current_user].projects
     end
+
+
+    field :all_links, resolver: Resolvers::LinksSearch
+    field :_all_links_meta, QueryMetaType, null: false
+
+    def _all_links_meta
+      Link.count
+    end
+
   end
 end
