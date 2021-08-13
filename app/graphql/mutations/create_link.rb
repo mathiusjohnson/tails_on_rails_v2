@@ -8,7 +8,7 @@ module Mutations
     type Types::LinkType
     
     def resolve(description: nil, url: nil)
-      byebug
+      
       Link.create!(
         description: description,
         url: url,
