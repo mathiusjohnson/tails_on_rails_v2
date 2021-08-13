@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_for(:link, class: "shadow p-3 mb-3 bg-info rounded", url: create_link_path) do |f| %>
+        <div class="form-group row">
+          <%= f.label :url, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :url, class: "form-control shadow rounded", placeholder: "enter url" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :description, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :description, class: "form-control shadow rounded", placeholder: "enter description" %>
+          </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+          <%= f.submit class: "btn btn-outline-light btn-lg" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="mb-3">
+      <%= link_to '[ Cancel ]', links_path, class: "text-info" %>
+    </div>
+  </div>
+</div>
