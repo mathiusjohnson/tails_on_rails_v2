@@ -10,6 +10,15 @@ class GraphqlController < ApplicationController
     handle_error_in_development e
   end
 
+  def executeFromChild(query, variables, context)
+    result = ProjectsSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    # render json: result
+    result.to_json
+  rescue StandardError => e
+    raise e unless Rails.env.development?
+
+    handle_error_in_development e
+  end
   private
 
   def query
