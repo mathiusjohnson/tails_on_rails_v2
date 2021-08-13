@@ -1,19 +1,34 @@
-<% if @data.length > 0%>
-  <% for link in @data do %>
-    <div class="item">
-      <div class="content">
-        <a class="header">
-          <%= link[:description] %>
-        </a>
-        <p class="description text-2xl">- posted by: <%= link["postedBy"]["email"] %></p>
-      </div>
-    </div>
+<% if @data.length > 0 %>
+  <% for link in @data["edges"] do %>
+    <%= render partial: "link", locals: { link: link }%>
   <% end %>
 <% else %>
 <div>No links yet!</div>
 <% end %>
-
-<% if user_signed_in? %>
-  <%= link_to("Add Link", create_link_path,
-    class: "btn", method: :post)%>
-<% end %>
+<div id="form"></div>
+<div class="flex space-x-4">
+  <%= button_to(
+    "Previous", 
+    previous_page_path,
+    class: "btn ", 
+    method: :get, 
+    disabled: !@data["pageInfo"]["hasPreviousPage"],
+    params: { cursor: @data["edges"][0]["cursor"] }
+  )%>
+  <% if user_signed_in? %>
+    <%= link_to(
+      "Add Link", 
+      new_link_path,
+      class: "btn ",
+      remote: true
+    )%>
+  <% end %>
+  <%= button_to(
+    "Next", 
+    next_page_path,
+    class: "btn ", 
+    method: :get, 
+    disabled: !@data["pageInfo"]["hasNextPage"], 
+    params: { cursor: @data["edges"][@data["edges"].length-1]["cursor"] }
+    ) %>
+</div>
