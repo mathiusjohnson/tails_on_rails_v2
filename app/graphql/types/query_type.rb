@@ -33,5 +33,13 @@ module Types
       Link.count
     end
 
+
+    field :links_paginated, Types::LinkType.connection_type, null: false, max_page_size: 5 do
+      description "show all links"
+    end
+
+    def links_paginated
+      Link.all
+    end
   end
 end
