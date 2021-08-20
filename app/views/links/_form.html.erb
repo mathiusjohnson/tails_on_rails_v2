@@ -1,28 +1,32 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-10">
-      <%= form_for(:link, class: "shadow p-3 mb-3 bg-info rounded", url: create_link_path) do |f| %>
-        <div class="form-group row">
-          <%= f.label :url, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
-            <%= f.text_field :url, class: "form-control shadow rounded", placeholder: "enter url" %>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :description, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
-            <%= f.text_field :description, class: "form-control shadow rounded", placeholder: "enter description" %>
-          </div>
-        </div>
-
-        <div class="form-group row justify-content-center">
-          <%= f.submit class: "btn btn-outline-light btn-lg" %>
-        </div>
-      <% end %>
+<%= form_for(:link, class: "shadow p-3 my-4 bg-info rounded", url: params["link"] ? update_link_path(id: params["link"]["id"]) : create_link_path, :remote => true) do |f| %>
+  <div class="flex justify-between">
+    <div class="flex space-x-4">
+      <div class="flex items-center space-x-4">
+        <% if params["link"] %>
+          <%= f.label :url, class: "" %>
+          <%= f.text_field :url, class: "form-control shadow rounded", value: "#{params["link"]["url"]}"  %>
+        <% else %>
+          <%= f.label :url, class: "" %>
+          <%= f.text_field :url, class: "form-control shadow rounded", placeholder: "enter url"  %>
+        <% end %>
+      </div>
+      <div class="flex items-center space-x-4">
+        <% if params["link"] %>
+          <%= f.label :description, class: "" %>
+          <%= f.text_field :description, class: "form-control shadow rounded", value: "#{params["link"]["description"]}"  %>
+        <% else %>
+          <%= f.label :description, class: "" %>
+          <%= f.text_field :description, class: "form-control shadow rounded", placeholder: "enter description"  %>
+        <% end %>
+      </div>
     </div>
-    <div class="mb-3">
-      <%= link_to '[ Cancel ]', links_path, class: "text-info" %>
+    <div class="flex justify-center space-x-4">
+      <div class="">
+        <%= link_to 'Cancel', links_path, class: "btn btn-danger" %>
+      </div>
+      <div class="">
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

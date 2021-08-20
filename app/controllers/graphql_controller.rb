@@ -19,6 +19,7 @@ class GraphqlController < ApplicationController
 
     handle_error_in_development e
   end
+  
   private
 
   def query

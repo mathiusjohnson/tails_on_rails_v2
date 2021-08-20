@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body class="w-full">
     <%# <div class="flex justify-between bg-blue-500 text-white text-2xl font-semibold px-8 py-4 mb-4"> %>
-      <%= render 'layouts/navigation' %>
+    <%= render 'layouts/navigation' %>
     <%# </div> %>
     <div class="container mx-auto mt-8">
-      <%= render 'layouts/messages' %>
-    
+      <div class="h-16">
+        <%= render 'layouts/messages' %>
+      </div>
       <%= yield %>
     </div>
   </body>

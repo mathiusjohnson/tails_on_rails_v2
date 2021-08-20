@@ -3,32 +3,9 @@
     <%= render partial: "link", locals: { link: link }%>
   <% end %>
 <% else %>
-<div>No links yet!</div>
+  <div>No links yet!</div>
 <% end %>
 <div id="form"></div>
-<div class="flex space-x-4">
-  <%= button_to(
-    "Previous", 
-    previous_page_path,
-    class: "btn ", 
-    method: :get, 
-    disabled: !@data["pageInfo"]["hasPreviousPage"],
-    params: { cursor: @data["edges"][0]["cursor"] }
-  )%>
-  <% if user_signed_in? %>
-    <%= link_to(
-      "Add Link", 
-      new_link_path,
-      class: "btn ",
-      remote: true
-    )%>
-  <% end %>
-  <%= button_to(
-    "Next", 
-    next_page_path,
-    class: "btn ", 
-    method: :get, 
-    disabled: !@data["pageInfo"]["hasNextPage"], 
-    params: { cursor: @data["edges"][@data["edges"].length-1]["cursor"] }
-    ) %>
+<div class="absolute bottom-0 left-0 right-0">
+  <%= render partial: "next_prev_buttons", locals: { data: @data }%>
 </div>

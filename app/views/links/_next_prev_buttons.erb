@@ -1,0 +1,20 @@
+<div class="flex justify-center space-x-4 my-4">
+  <% if data["pageInfo"]["hasPreviousPage"] %>
+    <%= button_to previous_page_path,  { method: :get, class: "btn  btn-primary", disabled: !data["pageInfo"]["hasPreviousPage"], params: { cursor: data["edges"][0]["cursor"] }  } do %>
+      <i class="fa fa-chevron-left"></i>
+    <% end %>
+  <% end %>
+  <% if user_signed_in? %>
+    <%= link_to(
+      'Add', 
+      new_link_path,
+      class: "btn btn-primary",
+      remote: true
+    )%>
+  <% end %>
+  <% if data["pageInfo"]["hasNextPage"] %>
+    <%= button_to next_page_path,  { method: :get, class: "btn  btn-primary", disabled: !data["pageInfo"]["hasNextPage"], params: { cursor: data["edges"][data["edges"].length-1]["cursor"] }  } do %>
+      <i class="fa fa-chevron-right"></i>
+    <% end %>
+  <% end %>
+</div>

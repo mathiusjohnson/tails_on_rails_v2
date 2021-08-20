@@ -55,7 +55,7 @@ class Resolvers::LinksSearch < GraphQL::Schema::Resolver
     scope.offset(value)
   end
 
-    def apply_order_by_with_created_at_asc(scope)
+  def apply_order_by_with_created_at_asc(scope)
     scope.order('created_at ASC')
   end
 
